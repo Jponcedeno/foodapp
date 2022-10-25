@@ -1,0 +1,29 @@
+<ul>
+  <!-- This ngFor will go through every element(food) in the list(foods) -->
+  <li *ngFor="let food of foods">
+    <!-- goes to food page, passes id of food dynamically-->
+    <!-- routerLink allows to go to different routes on client side-->
+    <a routerLink="/food/{{ food.id }}">
+      <!-- Another way to use things dynamically, instead of {{}}, but mainly use this for when something is completely dynamic, not partially dynamic like the code above; THIS IS JUST A PREFERENCE-->
+      <img [src]="food.imageURL" [alt]="food.name" />
+      <div class="content">
+        <div class="name">
+          {{ food.name }}
+        </div>
+        <!-- favorite is automatically red, so here we are dynamically putting it as not red-->
+        <span class="favorite {{ food.favorite ? '' : 'not' }}"> ❤ </span>
+        <!-- Import ngmodule starrating into terminal and added into module.ts as imports and -->
+        <div class="stars">
+          <star-rating
+            [value]="food.stars"
+            [totalstars]="5"
+            checkedcolor="red"
+            uncheckedcolor="black"
+            size="22px"
+            [readonly]="true"
+          ></star-rating>
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>
